@@ -422,24 +422,18 @@
   </footer>
 
   <!--===== MAIN JS =====-->
-  <script src="assets/js/main.js"></script>
+   <script src="assets/js/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
   <script>
-    $("#submit-form").submit((e) => {
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxWn927bibHg9L_9gvIWMnGfhoykuoL0mXfDjEONAGpvI5o7pMOEFku3cNAo9dp7i4ozQ/exec'
+    const form = document.forms['contactForm']
+  
+    form.addEventListener('submit', e => {
       e.preventDefault()
-      $.ajax({
-        url: "https://script.google.com/macros/s/AKfycbwDvIHUGwSLoKUORAOZ0TQ2vDmF-6N3szn0NPurqCLOGmT-_7Ke8FefjLSQybAiZb24lA/exec",
-        data: $("#submit-form").serialize(),
-        method: "post",
-        success: function (response) {
-          alert("Form submitted successfully")
-          window.location.reload()
-          //window.location.href="https://google.com"
-        },
-        error: function (err) {
-          alert("Something Error")
-
-        }
-      })
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => console.log('Success!', response))
+        .catch(error => console.error('Error!', error.message))
     })
   </script>
 </body>
