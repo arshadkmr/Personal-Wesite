@@ -12,7 +12,44 @@ toggleMenu.addEventListener('click', ()=>{
 closeMenu.addEventListener('click', ()=>{
     navMenu.classList.remove('show')
 })
-
+function validate() {
+    var name = document.getElementById("name").value;
+    var subject = document.getElementById("subject").value;
+    var phone = document.getElementById("phone").value;
+    var email = document.getElementById("email").value;
+    var message = document.getElementById("message").value;
+    const form = document.getElementById("contactForm");
+    var text;
+    if (name.length < 5) {
+        text = "Please Enter valid Name";
+        alert(text);
+        return false;
+    }
+    
+    if (email.indexOf("@") == -1 || email.length < 6) {
+        text = "Please Enter valid Email";
+        alert(text);
+        return false;
+    }
+    if (isNaN(phone) || phone.length != 10) {
+        text = "Please Enter valid Phone Number";
+        alert(text);
+        return false;
+    }
+    if (subject.length < 10) {
+        text = "Please Enter Correct Subject";
+        alert(text);
+        return false;
+    }
+    if (message.length <= 50) {
+        text = "Please Enter More Than 50 Characters";
+        alert(text);
+        return false;
+    }
+    alert("Form Submitted Successfully!");
+    form.reset();
+    return true;
+}
 /*===== ACTIVE AND REMOVE MENU =====*/
 const navLink = document.querySelectorAll('.nav__link')
 
